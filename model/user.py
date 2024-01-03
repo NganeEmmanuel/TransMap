@@ -1,29 +1,22 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine, Column, Integer, String, Date
-from sqlalchemy.orm import sessionmaker, Session
-from sqlalchemy.ext.declarative import declarative_base
+import datetime
 
-engine = create_engine('mysql://root:test123$@localhost/transport', echo=False)
+from sqlalchemy.orm import relationship
 
-session = sessionmaker(bind=engine)
-session = Session()
-
-Base = declarative_base()
-
-# app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:test123$@localhost/transport'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# db = SQLAlchemy(app)
+from Database.database import Base
+from sqlalchemy import Column, Integer, String, Date, ForeignKey
 
 
 class User(Base):
     __tablename__ = "users"
+    __table_args__ = {'extend_existing': True}
     id = Column(Integer, primary_key=True)
     username = Column(String(80), unique=True, nullable=False)
-    email = Column(String(120), unique=True, nullable=False)
     password = Column(String(120), unique=False, nullable=False)
+    email = Column(String(120), unique=True, nullable=False)
+    stop_id = Column(Integer, ForeignKey("stop.id"), nullable=True)
+    recentStops = relationship("Stop", back_populates="user")
+    authority_id = Column(Integer, ForeignKey("authority.id"), nullable=True)
+    authorities = relationship("Authority", back_populates="user")
+    date_joined = Column(Date, default=datetime.datetime.now())
+    updated_date = Column(Date, default=datetime.datetime.now())
 
-Base.metadata.create_all(engine)
-    # def __repr__(self):
-    #     return '<User %r>' % self.username
