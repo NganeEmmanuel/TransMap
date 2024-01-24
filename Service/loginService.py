@@ -13,10 +13,10 @@ def login(username, password):
         user = session.query(User).filter(User.username == username).first()
         if user:
             if user.password == password:
-                print(user.username, user.password)
+                return "success"
             else:
-                print("User credentials not valid")
+                return "User credentials not valid"
         else:
-            print("User not found")
+            return "User credentials not valid"  # User not found
     else:
-        print("Please fill all fields")
+        return "Please fill all fields"

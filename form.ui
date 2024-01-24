@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>796</width>
     <height>600</height>
    </rect>
   </property>
@@ -164,9 +164,9 @@ QPushButton:hover{
       <widget class="QLabel" name="label_3">
        <property name="geometry">
         <rect>
-         <x>380</x>
+         <x>400</x>
          <y>20</y>
-         <width>281</width>
+         <width>251</width>
          <height>31</height>
         </rect>
        </property>
@@ -189,11 +189,32 @@ QPushButton:hover{
         <string>Sign In To Your Account</string>
        </property>
       </widget>
+      <widget class="QLabel" name="errormsg">
+       <property name="geometry">
+        <rect>
+         <x>400</x>
+         <y>90</y>
+         <width>251</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(184, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="rsc.qrc"/>
+ </resources>
  <connections/>
 </ui>
